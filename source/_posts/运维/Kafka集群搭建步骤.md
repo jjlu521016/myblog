@@ -1,7 +1,9 @@
 ---
 title: Kafka集群搭建步骤
-date: 2018-03-07 17:05:51
-tags: Kafka
+date: 2018-01-12 12:05:51
+tags: 
+    - Kafka
+    - 集群
 ---
 
 ### 1. 下载kafka(scale编译版本不同，有不同的选择)

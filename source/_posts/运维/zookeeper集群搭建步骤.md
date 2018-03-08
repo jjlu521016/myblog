@@ -1,7 +1,9 @@
 ---
 title: zookeeper集群搭建步骤
-date: 2018-03-07 17:13:21
-tags: zookeeper
+date: 2018-01-01 17:13:21
+tags: 
+	- zookeeper
+	- 集群
 ---
 * zookeeper服务器的数量是 `2*n+1`台
 ## zookeeper集群搭建步骤
