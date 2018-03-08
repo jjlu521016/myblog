@@ -6,6 +6,7 @@ tags:
     - Spring
 ---
 以下代码为通用的代码，其中json解析使用的是fastJson，可以记录用户访问的ip、url、入参和出参
+<!-- more -->
 ```
 /**
  * @author jasonLu

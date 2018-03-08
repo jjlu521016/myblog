@@ -4,7 +4,8 @@ date: 2017.11.01 18:00:41
 tags:
 ---
 
-java获取服务器所有信息
+java获取服务器所有信息代码如下
+<!-- more -->
 ```
 package com.sinosoft.outher.listener;
 import java.net.InetAddress;

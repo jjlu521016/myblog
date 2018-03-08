@@ -5,7 +5,14 @@ title: >-
 date: 2018.01.17 14:29:15
 tags: jedis
 ---
-### 使用Jedis在高并发报错 (java.net.SocketException: Connection reset by peer: socket write error)
+
+Connection reset by peer: socket write error错误分析：
+常出现的Connection reset by peer: 原因可能是多方面的，不过更常见的原因是：  
+①：服务器的并发连接数超过了其承载量，服务器会将其中一些连接Down掉；  
+②：客户关掉了浏览器，而服务器还在给客户端发送数据；  
+③：浏览器端按了Stop 
+<!-- more -->
+
 #### 1.报错信息
 ```log
 java.lang.reflect.InvocationTargetException: null
@@ -29,13 +36,6 @@ Caused by: java.net.SocketException: Connection reset by peer: socket write erro
 	at redis.clients.jedis.Connection.flush(Connection.java:331)
 	... 22 common frames omitted
  ```
-
-Connection reset by peer: socket write error错误分析：
-常出现的Connection reset by peer: 原因可能是多方面的，不过更常见的原因是：  
-①：服务器的并发连接数超过了其承载量，服务器会将其中一些连接Down掉；  
-②：客户关掉了浏览器，而服务器还在给客户端发送数据；  
-③：浏览器端按了Stop 
-
  所以本问题是由 ①造成的
 
 

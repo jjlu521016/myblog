@@ -21,6 +21,7 @@ AccountService 接口的任意方法的执行：
 定义在pointcutexp包和所有子包里的JoinPointObjP2类的任意方法的执行：
 　　execution(* com.test.spring.aop.pointcutexp..JoinPointObjP2.*(..))")
 在多个表达式之间使用 ||,or表示 或，使用 &&,and表示 与，！表示 非.例如：
+<!-- more -->
 ```
 @Pointcut("@within(org.springframework.stereotype.Controller) || @within(org.springframework.web.bind.annotation.RestController)")
 ```

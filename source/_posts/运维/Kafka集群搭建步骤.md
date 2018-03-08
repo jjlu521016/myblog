@@ -4,6 +4,7 @@ date: 2018-01-12 12:05:51
 tags: 
     - Kafka
     - 集群
+toc: true    
 ---
 
 ### 1. 下载kafka(scale编译版本不同，有不同的选择)
@@ -15,7 +16,7 @@ tar zxvf kafka_2.11-1.0.0.tgz
 cd kafka_2.11-1.0.0
 mkdir logs
 ```
-
+<!-- more -->
 ### 2. 配置`server.properties`
 ```sh
 cd config

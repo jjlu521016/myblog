@@ -4,6 +4,7 @@ date: 2018-01-01 17:13:21
 tags: 
 	- zookeeper
 	- 集群
+toc: true	
 ---
 * zookeeper服务器的数量是 `2*n+1`台
 ## zookeeper集群搭建步骤
@@ -17,6 +18,7 @@ cd zookeeper-3.4.11
 ## 创建 data和log文件夹
 mkdir data log
 ```
+<!-- more -->
 ### 2. 进入conf文件夹，配置zookeeper
 ```sh
 cd conf
