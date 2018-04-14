@@ -19,7 +19,7 @@ Redis使用过程中经常会有各种大key的情况， 比如：
 #### 1.2 该对象每次只需要存取部分数据
 可以像第一种做法一样，分拆成几个key-value，  也可以将这个存储在一个hash中，每个field代表一个具体的属性，使用hget,hmget来获取部分的value，使用hset，hmset来更新部分属性    
 
-#### 2. hash、set、zset、list 中存储过多的元素
+### 2. hash、set、zset、list 中存储过多的元素
 类似于场景一种的第一个做法，可以将这些元素分拆。
 
 以hash为例，原先的正常存取流程是  hget(hashKey, field) ; hset(hashKey, field, value) 

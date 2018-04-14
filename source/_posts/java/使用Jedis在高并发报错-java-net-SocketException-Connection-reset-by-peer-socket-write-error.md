@@ -4,6 +4,7 @@ title: >-
   write error)
 date: 2018.01.17 14:29:15
 tags: jedis
+toc: true
 ---
 
 Connection reset by peer: socket write error错误分析：
@@ -39,7 +40,7 @@ Caused by: java.net.SocketException: Connection reset by peer: socket write erro
  所以本问题是由 ①造成的
 
 
- #### 修改之前的代码  
+ #### 2.修改之前的代码  
  初始化jedis的代码 
  ```java
 
@@ -82,7 +83,7 @@ Caused by: java.net.SocketException: Connection reset by peer: socket write erro
     }
  ```
 
- #### 修改之后的代码
+ #### 3.修改之后的代码
  初始化jedis的代码
  ```java
     /**

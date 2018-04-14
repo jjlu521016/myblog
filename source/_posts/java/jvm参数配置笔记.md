@@ -2,6 +2,7 @@
 title: jvm参数配置笔记
 date: 2018.01.15 18:25:49
 tags: JVM
+toc: true
 ---
 ### 1、堆设置（这里是重点）
 -Xms:初始堆大小

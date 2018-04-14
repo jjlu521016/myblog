@@ -1,15 +1,16 @@
 ---
 title: Mybatis传 ARRAY给Oracle存储过程
 date: 2017.03.10 23:29:38
-tags:
+tags: Mybatis
+toc: true
 ---
 
-1. 首先建立相关的存储过程，如图：
+### 1. 首先建立相关的存储过程，如图：
 
 
 ![11.png](http://upload-images.jianshu.io/upload_images/3353177-084719ab0ad30505.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 <!-- more -->
-2.在service实现层填充参数 例如：
+### 2.在service实现层填充参数 例如：
 ```java
 @Override
 	public Dto addFloorList(BannerRequest req)
@@ -35,7 +36,7 @@ tags:
 		System.out.print(rtnCode + "------" + rtnMsg);
 ```
 
-3.编写工具类，用来处理Array参数：
+### 3.编写工具类，用来处理Array参数：
 
   核心代码如下（详见附件中的 handler/ArrayHandler.java）:
 
@@ -44,7 +45,7 @@ tags:
 
 （注意：上图中的IndexFloor为测试bean。具体bean对象，根据需要编写）
 
-4.在MyBatis配置文件中，配置<typeHandlers>，handler为我们写好的工具类：
+### 4.在MyBatis配置文件中，配置<typeHandlers>，handler为我们写好的工具类：
 
 配置代码如下：
 ```xml
@@ -70,7 +71,7 @@ tags:
 
 </configuration>
 ```
-5.在Mapper.xml文件中调用存储过程并传参数：
+### 5.在Mapper.xml文件中调用存储过程并传参数：
 ```xml
 <select id="spInsertInfo" parameterType="Map" resultType="Map" statementType="CALLABLE">
 
@@ -90,7 +91,7 @@ tags:
 
  </select>
 ```
-6．调试代码。
+### 6．调试代码。
 
 参考资料：
 
