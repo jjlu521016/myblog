@@ -57,8 +57,8 @@ Passes <flag> to the Java virtual machine on which jmap is run.
 
 ```
 
-```
-对于jmap -heap命令显示的结果对应的含义如下:
+
+### jmap -heap命令显示的结果
 ```sh
 jmap -heap 837
 ```
