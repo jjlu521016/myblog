@@ -11,7 +11,7 @@ springboot 2.*
 jdk8
 elk 6.2.4(elasticsearch logstash kibana)
 <!-- more -->
-### 1. springboot集成logback+logstash
+## 1. springboot集成logback+logstash
 ### 1.1 pom加入依赖
 ```xml
 <dependency>
@@ -52,8 +52,8 @@ logging:
 </root>
 ```
 
-### 2.elk配置
-#### 2.1 es配置
+## 2.elk配置
+### 2.1 配置es
 解压文件 
 ```sh
 tar zxvf elasticsearch-6.2.4.tar.gz 
@@ -89,7 +89,7 @@ mkdir data logs
 ```
 ./bin/elasticsearch
 ```
-#### 2.2 logstash 配置
+### 2.2 logstash 配置
 
 解压文件 
 ```sh
@@ -124,7 +124,7 @@ output {
 ```sh
 ./bin/logstash -f config/log4j_es.conf 
 ```
-#### 2.3 kibana 配置
+### 2.3 kibana 配置
 解压
 ```sh
 tar zxvf kibana-6.2.4-linux-x86_64.tar.gz
@@ -142,7 +142,7 @@ elasticsearch.url: "http://192.168.188.110:9200"
 ```
 ./bin/kibana
 ```
-### 3.kibana界面设置
+## 3.kibana界面设置
 进入kibana界面
 点击 Management 点击Index Patterns
 在 Create index pattern 的文本框输入索引名称，因为我在logstash中设置索引为 `log4j-%{+YYYY.MM.dd}`,所以我们填写 `log4j-*` 点击下一步设置直到完成。
