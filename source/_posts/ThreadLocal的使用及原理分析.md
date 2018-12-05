@@ -68,7 +68,7 @@ ThreadLocal称作线程本地存储。简单来说，就是ThreadLocal为共享�
 - set：设置当前线程的线程局部变量的值
 - remove：将当前线程局部变量的值删除  
 - initialValue 返回当前线程局部变量的初始值  
-<img src="/image/java/threadlocal.png">
+<img src="/image/java/threadLocal.png">
 > 源码基于JDK 1.8   
 
 get方法的实现
