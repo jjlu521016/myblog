@@ -12,7 +12,7 @@ date: 2018-12-04 23:06:59
 1. CMS ：Mostly-Concurrent收集器，也称并发标记清除收集器（Concurrent Mark-Sweep GC，CMS收集器），它管理新生代的方式与Parallel收集器和Serial收集器相同，而在老年代则是尽可能得并发执行，每个垃圾收集器周期只有2次短停顿。
 2. CMS的目的： 为了消除Throught收集器和Serial收集器在Full GC周期中的`长时间停顿`。
 3. CMS的使用场景：应用需要更快速的响应，不想长时间的停顿，前提条件是你的CPU资源比较丰富的条件下，适合使用CMS收集器。对于实时响应的任务，比如web server类似。
-
+<!-- more -->
 # 二. CMS的过程
 - 初始标记(STW initial mark) 
 - 并发标记(Concurrent marking) 
