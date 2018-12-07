@@ -13,7 +13,7 @@ date: 2018-12-07 12:49:54
 kibana_path/bin/kibana-plugin install https://github.com/sirensolutions/sentinl/releases/download/tag-6.2.4/sentinl-v6.2.4.zip
 ```
 安装完成之后，重启kibana。在kibana页面可以看到相关的菜单
-<img src="image/elk/sentinl-dashborad.png">
+<img src="/image/elk/sentinl-dashborad.png">
 
 # 2. 配置sentinl
 ## 2.1 配置邮箱
@@ -34,10 +34,12 @@ sentinl:
 ```
 
 配置完成之后重启服务
-## 2.2 配置页面数据
-<img src="image/elk/sentinl-new.png">
-选择wizard或者advanced(最终都要转换成advanced，wizard更容易理解)
-<img src="image/elk/sentinl-watcher.png">
+## 2.2 配置页面数据  
+
+<img src="/image/elk/sentinl-new.png">
+选择wizard或者advanced(最终都要转换成advanced，wizard更容易理解)  
+
+<img src="/image/elk/sentinl-watcher.png">
 参考watcher数据如下:
 ```json
 {
@@ -137,6 +139,6 @@ sentinl:
 }
 ```
 如图选中开启日志报警
-<img src="image/elk/sentinl-test.png">
+<img src="/image/elk/sentinl-test.png">
 也可以点击测试
-<img src="image/elk/sentinl-test2.png">
+<img src="/image/elk/sentinl-test2.png">
