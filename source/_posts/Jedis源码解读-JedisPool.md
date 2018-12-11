@@ -6,7 +6,7 @@ tags:
 ---
 
 # 1. 什么是对象池
-对于一个对象，在其生命周期大致可以分为 `创建 -> 使用 -> 销毁`三大阶段，这个对象的时间是 T1(创建)+T2(使用)+T3(销毁)，
+对于一个对象，其生命周期大致可以分为 `创建 -> 使用 -> 销毁`三大阶段，这个对象的时间是 T1(创建)+T2(使用)+T3(销毁)，
 对于创建N个对象都需要这个步骤的话，肯定很耗时并且消耗性能的。
 <!-- more -->
 ** 官方对于对象池的解释是：**
@@ -14,11 +14,11 @@ tags:
 
 # 2. JedisPool的创建
 Jedis的连接池是基于apache.common.pool2,因此jedisPool的实现都是基于Pool2。
-关于pool2的源码文档开业参考
+关于pool2的源码文档可以参考
 http://commons.apache.org/proper/commons-pool/
 
 <image src="/image/jedis/jedisPool.png"/>
-JedisPool是common-pool2的Pool抽象类的子类。
+JedisPool是Pool抽象类的子类。
 ```java
 public class JedisPoolAbstract extends Pool<Jedis> {
 ...
@@ -29,12 +29,6 @@ public class JedisPoolAbstract extends Pool<Jedis> {
 package redis.clients.jedis.util;
 public abstract class Pool<T> implements Closeable {
   protected GenericObjectPool<T> internalPool;
-
-  /**
-   * Using this constructor means you have to set and initialize the internalPool yourself.
-   */
-  public Pool() {
-  }
 
   public Pool(final GenericObjectPoolConfig poolConfig, PooledObjectFactory<T> factory) {
     initPool(poolConfig, factory);
@@ -88,7 +82,7 @@ public abstract class Pool<T> implements Closeable {
     }
   }
 ```
-initPool方法中有两个参数：一个GenericObjectPoolConfig配置项分装类，一个是 PooledObjectFactory工厂类获取到连接池后从连接池中获取jedis连接对象。
+initPool方法中有两个参数：一个GenericObjectPoolConfig配置项封装类，一个是 PooledObjectFactory工厂类获取到连接池后从连接池中获取jedis连接对象。
 根据配置信息实例化pool2中的GenericeObjectPool这个对象池的管理者。
 
 当调用 getResource 获取Jedis时， 实际上是Pool内部的internalPool调用borrowObject()拿到一个实例 ，而internalPool 这个 GenericObjectPool 又调用了 JedisFactory 的 makeObject() 来完成实例的生成 (在Pool中资源不够的时候)
@@ -126,11 +120,11 @@ class JedisFactory implements PooledObjectFactory<Jedis> {
 ...
 }
 ```
-JedisFactory实现了pool2的PooledObjectFactory接口,池中对象创建和销毁的接口，交由业务方（就是文中的JedisFactory来实现））。
+JedisFactory实现了pool2的PooledObjectFactory接口,池中对象创建和销毁的接口，交由业务方（就是文中的JedisFactory来实现）。
 在JedisFactory#makeObject()方法中创建了Jedis对象。
 Jedis继承自BinaryJedis，其有一个Client属性，Client是Connection的子类，Connection中有socket这个属性，也就是真正跟redis服务端创建连接的类，并且这个socket是个长连接。
 <image src="/image/jedis/jedis.png"/>
-`redis.clients.jedis.Connection#connect
+`redis.clients.jedis.Connection#connect`
 ```java
 public void connect() {
     if (!isConnected()) {
@@ -165,7 +159,7 @@ public void connect() {
 
   # 客户端归还对象池
   归还池的处理规则是由common-pool2来实现的，就是把jedis对象放到空闲队列中，如果队列满了，就将其直接销毁，销毁是在JedisFactory实现的
-  redis.clients.jedis.JedisFactory#destroyObject
+  `redis.clients.jedis.JedisFactory#destroyObject`
 ```java
 
   @Override
