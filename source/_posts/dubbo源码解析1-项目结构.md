@@ -93,14 +93,16 @@ Simple注册中心
 spring Cloud架构
 
 Spring Cloud总体架构如下图
-![image.png](/images/2019/02/14/65488610-3041-11e9-9ca1-4912d7f30a5e.png)
+![image.png](/images/2019/02/14/65488610-3041-11e9-9ca1-4912d7f30a5e.png)  
+
 |节点名称	|   说明   |
 | ------------- | --------- |
 |Service Provider | 暴露服务的提供方。|
 |Service Consumer | 调用远程服务的服务消费方。|
 |EureKa Server     | 服务注册中心和服务发现中心。|
 spring Cloud组件图
-![image.png](/images/2019/02/14/332617a0-3042-11e9-9ca1-4912d7f30a5e.png)
+![image.png](/images/2019/02/14/332617a0-3042-11e9-9ca1-4912d7f30a5e.png)  
+
 
 |名称|Dubbo|Spring Cloud|
 |-|-|-|
