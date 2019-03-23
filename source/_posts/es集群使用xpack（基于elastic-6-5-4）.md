@@ -18,6 +18,7 @@ date: 2019-03-23 16:02:30
 curl -H "Content-Type:application/json" -XPOST  http://xxx:9200/_xpack/license/start_trial?acknowledge=true
 ```
 ## 1.2. es开启xpack
+<!-- more -->
 ```yml
 
 xpack.security.enabled: true
