@@ -1,15 +1,13 @@
 ---
-title: ' es集群使用xpack（基于elastic 6.5.4）'
+title: es集群使用xpack（基于elastic 6.5.4）
 tags:
   - elk
   - 集群
 toc: true
-originContent: ''
 categories:
   - 运维
 date: 2019-03-23 16:02:30
 ---
-
 
 > 集群搭建过程略
 ## 1. 启用trial license
@@ -63,3 +61,11 @@ xpack.security.transport.ssl.truststore.path: certs/elastic-certificates.p12
 ]$ bin/elasticsearch-keystore add xpack.security.transport.ssl.keystore.secure_password
 ]$ bin/elasticsearch-keystore add xpack.security.transport.ssl.truststore.secure_password
 ```
+
+查看集群状态(也可以通过kibana或者其他工具查看)
+```sh
+http://xxx:9200/_cluster/health
+```
+![image.png](/images/2019/03/23/83450670-4d42-11e9-935c-498aaea502b1.png)
+
+参考地址: https://www.elastic.co/guide/en/elasticsearch/reference/6.2/configuring-tls.html
