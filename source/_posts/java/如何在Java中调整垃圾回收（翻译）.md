@@ -11,6 +11,7 @@ date: 2019-05-05 13:47:03
 
 > 原文地址[how-to-tune-garbage-collection-in-java](https://dzone.com/articles/how-to-tune-garbage-collection-in-java)
 由于时间仓促，翻译中会出现很多错误，欢迎校正。
+我的博客即将同步至腾讯云+社区，邀请大家一同入驻：https://cloud.tencent.com/developer/support-plan?invite_code=1a81sifihhvfg
 
   垃圾收集是JVM在不再需要内存时代表应用程序回收内存的机制。从高层来看，它包括查找不再使用的对象，释放与这些对象相关联的内存，偶尔压缩堆以防止内存碎片化。
 
@@ -72,6 +73,7 @@ G1GC是一个并发收集器。这意味着垃圾收集进程的某些阶段可�
 
 愉快的调优吧！
 
-插播广告:
+
+
 我的博客即将同步至腾讯云+社区，邀请大家一同入驻：https://cloud.tencent.com/developer/support-plan?invite_code=1a81sifihhvfg
 
