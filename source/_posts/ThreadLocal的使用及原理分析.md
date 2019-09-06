@@ -1,11 +1,11 @@
 ---
 title: ThreadLocal的使用及原理分析
-tags: [ 
-    -java
-    -ThreadLocal
-]
+tags:
+  - java
+  - threadlocal
 toc: true
-categories: [java]
+categories:
+  - java
 date: 2018-12-05 21:50:31
 ---
 
