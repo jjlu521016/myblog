@@ -5,12 +5,11 @@ tags:
 toc: true
 categories:
   - 高并发
-top: false
-cover: false
-img: ''
+top: 'false'
+cover: 'false'
+img: '/images/2020/06/18/c2f89700-b146-11ea-a314-095877051747.png'
 author: jjlu521016
 date: 2020-06-18 17:19:00
-updated: 2020-06-18 17:19:00
 ---
 
 ## 什么是线程池： 
@@ -21,9 +20,7 @@ updated: 2020-06-18 17:19:00
 
 在说线程池之前，我们不得不提下线程。为什么有了线程还需要使用线程池技术呢？下面我们简单的了解下。
 
-![image.png](1)
-
-​
+![image.png](/images/2020/06/18/c2f89700-b146-11ea-a314-095877051747.png)
 
 **1. 创建/销毁线程伴随着系统开销，过于频繁的创建/销毁线程，会很大程度上影响处理效率**
 
@@ -47,6 +44,7 @@ updated: 2020-06-18 17:19:00
 
 ## 线程池的原理
 
+<!-- more -->
 在线程池中存在几个概念：
 
 `核心线程数`指的是线程池的基本大小；
@@ -57,7 +55,8 @@ updated: 2020-06-18 17:19:00
 
 与其他池化技术不同的是，线程池是基于`生产者-消费者`模式来实现的，任务的提交方是生产者，线程池是消费者。当我们需要执行某个任务时，只需要把任务扔到线程池中即可。线程池中执行任务的流程如下图如下。
 
-![image.png](2)[线程池执行流程]
+![image.png](/images/2020/06/18/d2a00170-b146-11ea-a314-095877051747.png)
+
 ## ThreadPoolExecutor简介
 
 ThreadPoolExecutor
@@ -85,37 +84,49 @@ public ThreadPoolExecutor(int corePoolSize,
 
 - `maximumPoolSize`：线程池中允许存在的最大线程数量。
 
-            当`workQueue`满了以后，再有新的任务进入到线程池时，会判断再新建一个线程是否会超过maximumPoolSize，
+```
+        当`workQueue`满了以后，再有新的任务进入到线程池时，会判断再新建一个线程是否会超过maximumPoolSize，
+```
 
-            如果会超过，则不创建线程，而是执行拒绝策略。
+```
+        如果会超过，则不创建线程，而是执行拒绝策略。
+```
 
-            如果不会超过maximumPoolSize，则会创建新的线程来执行任务。
+```
+        如果不会超过maximumPoolSize，则会创建新的线程来执行任务。
+```
 
 - `keepAliveTime`：空闲线程等待工作的超时时间 
 
-            当线程池中的线程数量大于corePoolSize时，大于corePoolSize这部分的线程如果没有任务去处理，那么就表示它们是空闲 
-            的，这个时候是不允许它们一直存在的，而是允许它们最多空闲一段时间，这段时间就是keepAliveTime，时间的单位就是 
-            TimeUnit。
+```
+        当线程池中的线程数量大于corePoolSize时，大于corePoolSize这部分的线程如果没有任务去处理，那么就表示它们是空闲 
+```
+
+```
+        的，这个时候是不允许它们一直存在的，而是允许它们最多空闲一段时间，这段时间就是keepAliveTime，时间的单位就是 
+```
+
+```
+        TimeUnit。
+```
 
 - `unit`：空闲线程允许存活时间的单位
-       `TimeUnit`是一个枚举值，它可以是纳秒、微妙、毫秒、秒、分、小时、天。
+     `TimeUnit`是一个枚举值，它可以是纳秒、微妙、毫秒、秒、分、小时、天。
 - `workQueue`：任务队列，用来存放任务。该队列的类型是阻塞队列。
-        常用阻塞队列有`ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue、PriorityBlockingQueue`等。 
+      常用阻塞队列有`ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue、PriorityBlockingQueue`等。 
 
-      **关于阻塞队列下面会介绍隐藏的一些坑。**
+```
+  **关于阻塞队列下面会介绍隐藏的一些坑。**
+```
 
 - `threadFactory`：线程池工厂，用来创建线程。
 
-              在实际项目中，为了便于后期排查问题，在创建线程时需要为线程赋予一定的名称
+```
+          在实际项目中，为了便于后期排查问题，在创建线程时需要为线程赋予一定的名称
+```
 
 - `handler`：拒绝策略。
-
-​
-
-![image.png](3)[拒绝策略触发机制]
-
-​
-
+![image.png](/images/2020/06/18/e010dcd0-b146-11ea-a314-095877051747.png)
 当任务队列已满，线程数量达到maximumPoolSize后，线程池就不会再接收新的任务了，这个时候就需要使用拒绝策略来决定最终是怎么处理这个任务。`默认情况下AbortPolicy，表示无法处理新任务，直接抛出异常`。在ThreadPoolExecutor类中定义了四个内部类，分别表示四种拒绝策略。我们也可以通过实现`RejectExecutionHandler`接口来实现自定义的拒绝策略。
 
 `AbortPocily`：不再接收新任务，直接抛出异常。
@@ -126,8 +137,6 @@ public ThreadPoolExecutor(int corePoolSize,
 
 `DiscardOldestPolicy`：丢弃任务队列中排在最前面的任务，并执行当前任务。（排在队列最前面的任务并不一定是在队列中待的时间最长的任务，因为有可能是按照优先级排序的队列）
 
-​
-
 **`知识延伸`**,想深入理解的同学可以看下相关的源码可以加深印象。
 
 `dubbo`中的线程池继承了`ThreadPoolExecutor.AbortPolicy`，重写了`rejectedExecution`方法，并且`dubbo`线程模型的所有拒绝策略都是使用的`AbortPolicyWithReport`。
@@ -135,8 +144,6 @@ public ThreadPoolExecutor(int corePoolSize,
 `Netty`很像JDK中的CallerRunsPolicy，舍不得丢弃任务。不同的是，CallerRunsPolicy是直接在调用者线程执行的任务。而 Netty是新建了一个线程来处理的。
 
 `ActiveMq`中的策略属于最大努力执行任务型，当触发拒绝策略时，在尝试一分钟的时间重新将任务塞进任务队列，当一分钟超时还没成功时，就抛出异常。
-
-​
 
 ## Executors
 
@@ -154,7 +161,7 @@ Executors创建返回ThreadPoolExecutor对象的方法共有三种：
 
 `CachedThreadPool`
 
-```java
+```
    /**
      * corePoolSize => 0，核心线程池的数量为0
      * maximumPoolSize => Integer.MAX_VALUE，可以认为最大线程数是无限的
@@ -168,20 +175,15 @@ Executors创建返回ThreadPoolExecutor对象的方法共有三种：
                                       new SynchronousQueue<Runnable>(),
                                       threadFactory);
     }
-
 ```
-
-​
 
 当一个任务提交时，corePoolSize为0不创建核心线程，SynchronousQueue是一个不存储元素的队列，可以理解为队里永远是满的，因此最终会创建非核心线程来执行任务。
 
 对于非核心线程空闲60s时将被回收。因为Integer.MAX\_VALUE非常大 (2^32 -1)，**可以认为是可以无限创建线程的**，在资源有限的情况下容易引起OOM异常
 
-​
-
 `newSingleThreadExecutor` 
 
-```java
+```
   /**
    * corePoolSize => 1，核心线程池的数量为1
    * maximumPoolSize => 1，只可以创建一个非核心线程
@@ -200,11 +202,9 @@ Executors创建返回ThreadPoolExecutor对象的方法共有三种：
 
 当一个任务提交时，首先会创建一个核心线程来执行任务，如果超过核心线程的数量，将会放入队列中，因为**LinkedBlockingQueue是长度为Integer.MAX\_VALUE的队列**，可以认为是无界队列，因此往队列中可以插入无限多的任务，在资源有限的时候容易引起OOM异常，因为无界队列，**maximumPoolSize和keepAliveTime参数将无效。**
 
-​
-
 `newFixedThreadPool` 
 
-```java
+```
    /**
      * corePoolSize => 1，核心线程池的数量为1
      * maximumPoolSize => 1，只可以创建一个非核心线程
@@ -221,8 +221,6 @@ Executors创建返回ThreadPoolExecutor对象的方法共有三种：
                                       threadFactory);
     }
 ```
-
-​
 
 综上所述：
 
